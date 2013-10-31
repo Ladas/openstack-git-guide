@@ -50,5 +50,13 @@ If everything is fine, you can send the commit to gerrit by:
 
     git review
     
+Editing a patch and sending it again
+====================================
 
-  
+Due to several reasons, you will need to edit the changes in your commit and sent it again. It's important to edit
+the existing commit and keep the change-id. Gerrit will create a new patchset for each new change, it reckognizes that 
+it's the updated commit thanks to change-id. 
+
+Easiest way to add files to commit is
+
+    git commit --amend # adding new changes to latest commit
