@@ -1,7 +1,7 @@
 openstack-git-guide
 ===================
 
-Openstack quick GIT guide. A git basics that should be enought to know, to be able to handle the whole openstack gerrit process.
+Openstack quick GIT guide, for beginners with Openstack and GIt. A git basics that should be enought to know, to be able to handle the whole openstack gerrit process.
 
 
 Setup a gerrit
@@ -13,11 +13,18 @@ Please follow https://wiki.openstack.org/wiki/GerritWorkflow
 Sending a new patch
 ===================
 
-Make the changes of the files you need in your favourite project, and then go to the directory with the project, e.g.:
+Go to project directory with your favourite project. e.g:
 
     cd /opt/stack/nova
+    
+Create a new branch where you will be doing the changes:
 
-You should see what files you have changed with
+    git checkout master # goes to the master branch
+    git fetch --all # fetches the remote repositories
+    git pull origin master # updates the master with the latest version
+    git checkout -b bug/xxx # creates a new branch from the actual branch
+
+Make the changes of the files you need in your favourite project, you should see what files you have changed with
 
     git status
     
@@ -76,4 +83,18 @@ You will delete the commit with.
                      # them again. There is also --hard option, that will also delete the changes.
                      
 
+Rebasing with the latest master
+===============================
 
+Too keep your patch up to date you will often need to rebase. Rebasing is described here  https://wiki.openstack.org/wiki/GerritWorkflow
+The easiest way to rebase is:
+
+    git checkout master # go to branch master
+    git fetch --all # fetches all the remote changes
+    git pull origin master # updates the master with the latest changes
+    git checkout <your branch> # go to branch that holds your patch
+    git rebase master # rebases your branch with latests master commits
+    git review # send rebased patch to gerrit and it's done :-)
+    
+You may have conflicts during rebasing, it will mark the conflicts in your files. You need to edit those files,
+then 'git add' them then finish the rebase with 'git rebase --continue'
