@@ -42,7 +42,7 @@ Now you are ready to commit the changes. Please follow the https://wiki.openstac
 
     git commit # will prompt you to add commit message
     
-Now you should check that you commit has change-id and is correctly connected with your blueprint or bug with:
+Now you should check that your commit has a change-id and is correctly connected with your blueprint or bug with:
 
     git log
     
