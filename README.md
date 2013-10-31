@@ -60,3 +60,20 @@ it's the updated commit thanks to change-id.
 Easiest way to add files to commit is
 
     git commit --amend # adding new changes to latest commit
+    
+If you have created another commit and you want to merge it to the previous commit, you can do it via iteractive rebase.
+Always backup your git when you rebasing. E.g. by creating another branch from branch you have right now with:
+
+    git checkout -b testing_rebasing_branch
+    # then merge the patches
+    git rebase -i HEAD~2 # HEAD~2 means it takes 2 last commits. It opens a vim with iteractive rebase. Check the options
+                         # the easiest merge is add letter "s" in front of commit you want to squash into the other commit. 
+    
+If you havent sent you commit to gerrit yet (via git review), you might decide just to cancel the commit and start again.
+You will delete the commit with.
+
+    git reset HEAD~1 # HEAD~1 means the last commit, it resets the commit, but keeps your files so you can 'git add'
+                     # them again. There is also --hard option, that will also delete the changes.
+                     
+
+
